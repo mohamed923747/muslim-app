@@ -31,9 +31,10 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Install dependencies
+      - name: Install dependencies and generate platform folders
         run: |
           cd flutter_subha_app
+          flutter create --platforms=android,ios .
           flutter pub get
 
       - name: Build Android APK
