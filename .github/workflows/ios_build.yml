@@ -1,0 +1,59 @@
+name: Build Flutter App (Android & iOS)
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch: # يسمح بتشغيل البناء يدوياً
+
+jobs:
+  build:
+    name: Build iOS and Android Release Artifacts
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: |
+          cd flutter_subha_app
+          flutter pub get
+
+      - name: Build Android APK
+        run: |
+          cd flutter_subha_app
+          flutter build apk --release
+
+      - name: Build iOS IPA (Unsigned)
+        run: |
+          cd flutter_subha_app
+          flutter build ipa --no-codesign
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-release-apk
+          path: flutter_subha_app/build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload iOS IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-release-ipa
+          path: flutter_subha_app/build/ios/archive/Runner.xcarchive
