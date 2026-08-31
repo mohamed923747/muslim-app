@@ -1,0 +1,24 @@
+name: muslim_app
+description: "تطبيق زاد المسلم المتكامل - قرآن، أذكار، سبحة إلكترونية، مساعد ذكي، مواقيت الصلاة، ومتتبع الطاعات"
+version: 1.0.0+1
+publish_to: "none"
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  provider: ^6.1.2
+  shared_preferences: ^2.2.3
+  http: ^1.2.1
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
