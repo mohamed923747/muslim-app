@@ -1,0 +1,6 @@
+{
+  "name": "مسلم",
+  "description": "App for Muslim tracking and progress",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
